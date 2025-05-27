@@ -64,18 +64,6 @@ grading_sampler = ChatCompletionSampler(
 )
 ```
 
-## Supported Evaluation Tasks
-
-| Evaluation Task | Description | Default Sample Count |
-|----------------|-------------|---------------------|
-| mmlu | Massive Multitask Language Understanding | Full dataset |
-| math | Mathematical problem solving | Full dataset, 10 repeats |
-| gpqa | Graduate-level question answering | Full dataset, 10 repeats |
-| mgsm | Multilingual grade school math | 250 per language |
-| drop | Reading comprehension | Full dataset |
-| humaneval | Code generation evaluation | Full dataset |
-| simpleqa | Simple question answering | Full dataset |
-| browsecomp | Browse comprehension | Full dataset |
 
 ## Output Files
 
