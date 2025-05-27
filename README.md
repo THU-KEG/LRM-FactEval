@@ -30,12 +30,6 @@ python simple_evals.py
 ### Examples
 
 ```bash
-# List available models
-python simple_evals.py --list-models
-
-# Run specific model
-python simple_evals.py --model Qwen2.5-32Btrivia
-
 # Debug mode
 python simple_evals.py --debug
 
