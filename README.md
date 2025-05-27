@@ -51,28 +51,13 @@ model_url = "http://localhost:8000/v1"  # Your model API endpoint
 judge_url = "http://localhost:8001/v1"  # Your judge model API endpoint
 ```
 
-## Important Notes
-
-1. **Model Deployment Required**: You must deploy your models using vLLM or SGLang before running evaluations
-2. Ensure correct API keys and URLs are set
-3. Debug mode uses fewer samples, suitable for quick testing
-4. Full evaluations may take considerable time
-5. Result files are saved in `/tmp` directory
-
 ## Environment Variables
 
 ```bash
 export OPENAI_API_KEY="your-api-key"
 ```
 
-## Troubleshooting
 
-- **Model Server Issues**: Ensure your vLLM/SGLang server is running and accessible
-- **API Connection**: Verify the model URLs are correct and servers are responding
-- If you encounter model not found errors, check if the model name is correct
-- Ensure network connectivity to access model APIs
-- Check if there's sufficient disk space to store result files
-- **Memory Issues**: If using vLLM, you may need to adjust `gpu_memory_utilization` or `max_model_len` parameters
 ## Usage
 
 ### Basic Usage
@@ -138,4 +123,12 @@ The program generates results containing the following metrics:
 - Other evaluation-specific metrics
 
 Finally, it outputs a summary table showing all models' performance across evaluation tasks.
+## Troubleshooting
 
+- **Model Server Issues**: Ensure your vLLM/SGLang server is running and accessible or Ensure correct API keys and URLs are set
+- **API Connection**: Verify the model URLs are correct and servers are responding
+- If you encounter model not found errors, check if the model name is correct
+- Ensure network connectivity to access model APIs
+- Check if there's sufficient disk space to store result files
+- Result files are saved in `/tmp` directory
+- **Memory Issues**: If using vLLM, you may need to adjust `gpu_memory_utilization` or `max_model_len` parameters
