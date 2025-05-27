@@ -20,7 +20,7 @@ from .sampler.responses_sampler import ResponsesSampler
 from .sampler.claude_sampler import ClaudeCompletionSampler, CLAUDE_SYSTEM_MESSAGE_LMSYS
 import os
 # 设置一个虚拟的API密钥
-os.environ["OPENAI_API_KEY"] = "sk-wjrUbg6Z6zMomOJGRmnaaAjHN6pzNLmr350Bdx0ScVjir5Py"
+os.environ["OPENAI_API_KEY"] = "sk-key"
 
 def main():
     parser = argparse.ArgumentParser(
