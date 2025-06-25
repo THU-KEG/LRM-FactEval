@@ -80,6 +80,84 @@ python simple_evals.py --debug
 # Specify sample count
 python simple_evals.py --examples 100
 ```
+# repetition judge prompt
+```python
+f"""You are an expert reviewer specialized in evaluating the quality of AI thinking processes. You need to analyze the AI thinking process provided below and identify whether there is SEVERE logical repetition.
+
+Logical repetition refers to when an AI repeatedly states the same or very similar reasoning steps, arguments, or conclusions without making substantive progress. However, for this task, you should ONLY identify SEVERE cases of repetition.
+
+SEVERE logical repetition is characterized by:
+1. Extensive repetition where the same exact reasoning steps are repeated multiple times with minimal or no variation
+2. Clear cases where the AI is stuck in a loop, repeating almost identical content for multiple paragraphs
+3. Substantial portions (at least 30%+) of the thinking process that add no new information and merely restate previous points
+4. Obvious circular reasoning that makes the thinking process inefficient and unnecessarily lengthy
+
+Minor repetition, such as briefly restating a point for emphasis or clarity, summarizing previous steps, or revisiting an idea with substantial new insight should NOT be considered severe repetition.
+
+Here's an example of SEVERE repetition that should be marked as "YES":
+
+'''
+To find the length of the hypotenuse, I need to use the Pythagorean theorem. The Pythagorean theorem states that a² + b² = c², where a and b are the legs of the right triangle and c is the hypotenuse.
+
+Given that a = 3 and b = 4, I need to substitute these values into the formula.
+a² + b² = c²
+3² + 4² = c²
+9 + 16 = c²
+25 = c²
+c = 5
+
+To solve this problem, I need to apply the Pythagorean theorem. The Pythagorean theorem tells us that in a right triangle, the square of the hypotenuse equals the sum of squares of the other two sides. So a² + b² = c².
+
+Let me substitute the values a = 3 and b = 4 into the Pythagorean formula.
+a² + b² = c²
+3² + 4² = c²
+9 + 16 = c²
+25 = c²
+So c = 5
+
+Actually, let me double-check my work using the Pythagorean theorem again. The formula is a² + b² = c², where a and b are the legs, and c is the hypotenuse.
+With a = 3 and b = 4:
+3² + 4² = c²
+9 + 16 = c²
+25 = c²
+c = 5
+
+Therefore, the length of the hypotenuse is 5.
+'''
+
+Here's an example of a GOOD thinking process without severe repetition that should be marked as "NO":
+
+'''
+Okay, let's see. The user is asking about the IEEE Frank Rosenblatt Award in 2010. I need to figure out who received that award.
+
+First, I should recall what the Frank Rosenblatt Award is. From what I remember, the IEEE has various awards named after notable figures in the field of electrical engineering and computer science. Frank Rosenblatt is known for his work on the perceptron, which was an early neural network model. The award is likely related to neural networks or machine learning.
+
+Now, the year in question is 2010. I need to find out who was awarded that year. I don't have the exact information memorized, so I might need to think of notable people in AI or neural networks around that time. Maybe someone like Geoffrey Hinton? He was active in the field, but I'm not sure about the exact year. Or perhaps Yann LeCun? He's another prominent figure in deep learning. Alternatively, maybe someone from the robotics or control systems area, since IEEE covers a broad range.
+
+Wait, the Frank Rosenblatt Award is specifically for contributions to neural networks and machine learning. Let me check my memory. In 2010, the award might have gone to someone who made significant contributions around that time. Another possibility is Andrew Ng, but I think he was more prominent in the mid-2000s. Maybe someone else. Alternatively, the award might have been given to a team or an organization, but usually, it's an individual.
+
+Alternatively, I can think of the IEEE website or databases, but since I can't access external resources, I need to rely on my existing knowledge. I recall that the 2010 IEEE Frank Rosenblatt Award was given to Geoffrey Hinton. Wait, but I'm not entirely certain. Another name that comes to mind is Yann LeCun, but I think he received it in a different year. Let me think again. Alternatively, maybe the award was given to someone like David Rumelhart, but he passed away earlier. 
+
+Wait, I think the 2010 recipient was actually Geoffrey Hinton. However, I'm not 100% sure. Alternatively, maybe the answer is someone else. If I'm not certain, I should state that I can't recall the exact name but provide the context about the award. However, the user is expecting an answer, so I need to be as accurate as possible. Another angle: sometimes the award is given to a group. But I think it's more likely an individual. Let me try to remember. In 2010, Geoffrey Hinton was working on deep learning and had some breakthroughs, so that might be the connection. Alternatively, maybe it was someone like Raj Reddy, but he's more associated with AI in general. 
+
+Alternatively, I might be confusing it with the Turing Award. The IEEE Frank Rosenblatt Award is a more specific award. Another possibility is that the 2010 recipient was not a well-known name, but I can't recall. Given that I can't be certain, but based on the information I have, I'll go with Geoffrey Hinton as the most probable answer, even though I'm not 100% sure.
+'''
+
+Notice that in the GOOD example, although the AI considers multiple possibilities and revisits some names, it's progressively exploring different candidates, offering context, and providing new reasoning each time. The word "alternatively" appears multiple times, but each instance introduces a new possibility or perspective, not merely repeating the same points.
+
+Please carefully analyze the following thinking process with these strict criteria in mind:
+
+===THINKING PROCESS STARTS===
+{thinking_process}
+===THINKING PROCESS ENDS===
+
+After analyzing the thinking process, simply respond with ONLY ONE of these answers:
+- "YES" if there is SEVERE logical repetition as defined above and illustrated in the first example
+- "NO" if there is no severe logical repetition (even if some minor repetition exists) as shown in the second example
+
+Your response should contain only the word "YES" or "NO" with no other text."""
+
+```
 
 ## Configuration
 
