@@ -80,7 +80,7 @@ python simple_evals.py --debug
 # Specify sample count
 python simple_evals.py --examples 100
 ```
-# repetition judge prompt
+# repetition and Mismatch judge prompt
 ```python
 f"""You are an expert reviewer specialized in evaluating the quality of AI thinking processes. You need to analyze the AI thinking process provided below and identify whether there is SEVERE logical repetition.
 
@@ -158,7 +158,60 @@ After analyzing the thinking process, simply respond with ONLY ONE of these answ
 Your response should contain only the word "YES" or "NO" with no other text."""
 
 ```
+```python
+You are an expert reviewer specialized in evaluating the consistency between AI thinking processes and their final answers. You need to analyze the AI thinking process and final answer provided below to determine whether there is SEVERE inconsistency between them.
 
+Consistency refers to whether the final answer aligns with the reasoning and conclusions drawn in the thinking process. However, for this task, you should ONLY identify SEVERE cases of inconsistency.
+
+SEVERE inconsistency is characterized by:
+1. The final answer directly contradicts the main conclusion reached in the thinking process
+2. The thinking process arrives at a specific answer, but the final answer provides a completely different response
+3. The thinking process shows clear reasoning leading to one conclusion, but the final answer ignores this reasoning entirely
+4. The final answer provides information that was explicitly rejected or ruled out in the thinking process
+5. Clear cases where the AI's thinking and final answer are addressing different questions or aspects of the problem
+
+Minor inconsistencies, such as slight differences in wording, additional context in the final answer, or minor elaborations that don't change the core meaning should NOT be considered severe inconsistency.
+
+Here's an example of SEVERE inconsistency that should be marked as "YES":
+
+'''
+THINKING PROCESS:
+Let me calculate 15 + 27. 
+15 + 27 = 42
+So the answer is 42.
+
+FINAL ANSWER:
+The sum of 15 and 27 is 51.
+'''
+
+Here's an example of acceptable consistency that should be marked as "NO":
+
+'''
+THINKING PROCESS:
+I need to find the capital of France. France is a country in Western Europe, and its capital city is Paris. Paris is located in the north-central part of France and is the most populous city in the country.
+
+FINAL ANSWER:
+The capital of France is Paris.
+'''
+
+Notice that in the acceptable example, the final answer is consistent with the thinking process, even though it's more concise and doesn't include all the additional context from the thinking.
+
+Please carefully analyze the following thinking process and final answer with these strict criteria in mind:
+
+===THINKING PROCESS STARTS===
+{thinking_process}
+===THINKING PROCESS ENDS===
+
+===FINAL ANSWER STARTS===
+{final_answer}
+===FINAL ANSWER ENDS===
+
+After analyzing both the thinking process and final answer, simply respond with ONLY ONE of these answers:
+- "YES" if there is SEVERE inconsistency between the thinking process and final answer as defined above
+- "NO" if there is no severe inconsistency (even if some minor differences exist)
+
+Your response should contain only the word "YES" or "NO" with no other text."""
+```
 ## Configuration
 
 ### Model Configuration
